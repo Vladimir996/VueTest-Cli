@@ -151,6 +151,12 @@ export default {
    color: #737373;
    font-size: 17px;
 }
+.nav-item :hover {
+  color: #2ecc71;
+}
+.router-link-active {
+ color: #2ecc71 !important;
+}
 .logout {
   float: right;
 }

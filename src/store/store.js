@@ -8,6 +8,7 @@ import home from './home.js';
 import header from './header.js';
 import footer from './footer.js';
 import authentication from './authentication.js'
+import blog from './blog.js'
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export const store = new Vuex.Store({
        home,
        header,
        footer,
-       authentication
+       authentication,
+       blog
    }
 });

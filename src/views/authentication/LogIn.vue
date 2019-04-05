@@ -2,8 +2,8 @@
 <div>
   <div id="lineIn">
     <p>LOG IN</p> 
-
   </div>
+
     <div class="singIncontainer">
   <form class="form">
   <div class="form-group">
