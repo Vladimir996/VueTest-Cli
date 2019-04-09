@@ -30,6 +30,9 @@ const actions = {
             commit('setUser', newUser);
             // ...
             });
+},
+autoSignIn({ commit }, payload) {
+    commit('setUser', { id: payload.uid });
 }
 }
 export default {

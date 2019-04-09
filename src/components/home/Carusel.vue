@@ -88,7 +88,7 @@
   </div>
 </template>
 <script>
-import db from '../../firebase/init'
+import db from '@/firebase/init'
 import Slick from "vue-slick";
 export default {
   name: "Carusel",

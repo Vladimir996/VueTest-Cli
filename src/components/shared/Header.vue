@@ -1,13 +1,12 @@
 <template>
   <header>
-    <div class="header container">
-      <img id="logo" :src="headerInfo[0].logoUrl">
+    <div class="header container">    
+       <img id="logo" :src="headerInfo[0].logoUrl">
       <div class="media-wide">
         <a v-for="(socialIcon, index) in socialIcons" :key="index" :href="socialIcon.url">
           <img :src="socialIcon.imgUrl">
         </a>
       </div>
-
       <nav class="navbar navbar-expand-lg navbar-light container hide">
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -86,7 +85,7 @@
   </header>
 </template>
 <script>
-import db from "../../firebase/init";
+import db from '@/firebase/init'
 import firebase from 'firebase';
 import 'firebase/auth';
 export default {

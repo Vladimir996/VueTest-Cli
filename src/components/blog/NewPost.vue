@@ -5,8 +5,12 @@
            <p>ADD NEW BLOG POST</p> 
         </div>
         <div class="new-post">
-                       <textarea class="textarea" name="ckeditor" id="ckeditor" v-model='text'></textarea>
-                       <div class="afterbtn"><button class="btn btn-success" @click="addPost">ADD POST</button></div>
+                  <input class="ck-title" v-model='title' type="text" placeholder="Title">
+                       <br>  
+                  <input class="ck-url" v-model='url' type="text" placeholder="URL">
+                  <textarea class="tSextarea" name="ckeditor" id="ckeditor" v-model='text'></textarea>
+              
+                  <div><button class="btn btn-success" @click="addPost">ADD POST</button></div>
         </div>
    </div>
    </div>
@@ -14,35 +18,43 @@
 
 
 <script>
-// import db from '@/firebase/init'
+import db from '@/firebase/init'
 export default {
+    data(){
+       return{
+           moment:moment,
+           title:'',
+           text: null,
+           url:'',
+           src:true,
+
+       }
+   },
      mounted(){
        CKEDITOR.replace( 'ckeditor' )
    },
-   methods: {
+    methods:{
        addPost() {
-           const slug = this.generateUUID()
            db.collection('blog').add({
                title: this.title,
+               
                text: CKEDITOR.instances.ckeditor.getData(),
-               text: this.text,
-           })
-        //    .then((docRef) =>{
-        //         this.$router.push(`blog/${slug}/success`)
-        //        })
-           .catch((error) => console.error('Error adding document: ', error))
-           if(!this.$v.$invalid){
-               alert('Blog is added.')
-           }
+               url: this.url,
+           }).then(() => {
+                  this.$router.push({ path: '/blog' }) 
+               })
        },
-   }
-   
+   },
+//    created() {
+      
+//       console.log(this.$route.params);
+//    }
 }
 </script>
 
 <style>
 .container-blog {
-    height: 1000px;
+    height: auto;
 }
 #blog-green {
  width: 100%;
@@ -57,7 +69,25 @@ export default {
   margin-left: 480px;
   padding-top: 20px;
 }
-#ckeditor {
-    width: 500px;
+#cke_ckeditor {
+ width: 1000px;
+ margin-left: 450px;
+}
+.btn-success {
+    margin-left: 450px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.ck-title {
+    margin-left: 450px;
+    margin-bottom: 20px;
+    width: 600px;
+    height: 40px;
+}
+.ck-url {
+    margin-left: 450px;
+    margin-bottom: 20px;
+    width: 600px;
+    height: 40px;
 }
 </style>
