@@ -13,12 +13,7 @@ const mutations = {
         state.blogInfo = payload
       }
 }
-const actions = {  
-    // db.collection('blog').get()
-    // .then(snapshot => {
-    //   snapshot.forEach(doc => {
-    //     blogInfo.push(doc.data())
-    //   })
+const actions = {
     getBlogs({ commit }) {
         db.collection('blog').get()
     .then(snapshot => {

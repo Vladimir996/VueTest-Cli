@@ -43,7 +43,7 @@
 </template>
 <script>
 import Carusel from "../components/home/Carusel.vue";
-import db from '../firebase/init'
+import db from '@/firebase/init'
 export default {
   components: {
     Carusel

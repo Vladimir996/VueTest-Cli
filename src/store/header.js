@@ -1,3 +1,5 @@
+import db from '@/firebase/init'
+
 const state = {
     headerInfo: [],
     socialIcons: []
@@ -22,7 +24,17 @@ const mutations = {
       }
 }
 const actions = {
-
+    // getLogo ({commit}) {
+    //     db.collection("logo")
+    //   .get()
+    //   .then(snapshot => {
+    //     const headerInfo = "";
+    //     snapshot.forEach(doc => {
+    //       headerInfo = doc.data();
+    //     });
+    //     commit("setHeaderInfo", headerInfo);
+    //   });
+    // }
 }
 
 export default {

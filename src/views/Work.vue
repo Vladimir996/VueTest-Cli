@@ -5,6 +5,10 @@
         <h3>CHECK OUT WHAT I CAN DO</h3>
       </div>
     </div>
+        <div class="vld-parent">
+        <loading :active.sync="isLoading"></loading>
+        <button @click.prevent="loadAnimation">fetch Data</button>
+    </div>
     <div class="filter">
       <a
         @click.prevent="selectedCategory ='all'"
@@ -47,15 +51,28 @@
 </template>
 
 <script>
-import db from '../firebase/init'
-
+import db from '@/firebase/init'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
   data() {
     return {
       activeClass: "grid",
-      selectedCategory: "all"
+      selectedCategory: "all",
+      isLoading: false
     }
   },
+  components: {
+            Loading,
+  },
+   methods: {
+            loadAnimation() {
+                this.isLoading = true;
+                setTimeout(() => {
+                  this.isLoading = false
+                },1300)
+            },
+     },
   computed: {
     projects() {
       if (this.selectedCategory === "all") {

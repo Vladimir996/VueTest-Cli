@@ -2,15 +2,15 @@
    <div>
        <div class="container-blog">
         <div id="blog-green">
-           <p>ADD NEW BLOG POST</p> 
+           <p>EDIT BLOG POST</p> 
         </div>
         <div class="new-post">
                   <input class="ck-title" v-model='title' type="text" placeholder="Title">
                        <br>  
                   <input class="ck-url" v-model='url' type="text" placeholder="URL">
-                  <textarea class="tSextarea" name="ckeditor" id="ckeditor" v-model='text'></textarea>
+                  <textarea name="ckeditor" id="ckeditor" v-model='text'></textarea>
               
-                  <div><button class="btn btn-success" @click="addPost">ADD POST</button></div>
+                  <div><button class="btn btn-success" @click="editPost">EDIT</button></div>
         </div>
    </div>
    </div>
@@ -21,26 +21,23 @@ import db from '@/firebase/init'
 export default {
     data(){
        return{
+        //    moment:moment,
            title:'',
            text: null,
            url:'',
-           src:true,
-
+        //    src:true,
        }
    },
      mounted(){
        CKEDITOR.replace( 'ckeditor' )
    },
     methods:{
-       addPost() {
-           db.collection('blog').add({
-               title: this.title,
-               
-               text: CKEDITOR.instances.ckeditor.getData(),
-               url: this.url,
-           }).then(() => {
-                  this.$router.push({ path: '/blog' }) 
-               })
+       editPost() {
+        db.collection('blog').doc(this.blogInfo.id).update({
+            title: this.blogInfo.title,
+            url: this.blogInfo.url,
+            text: this.blogInfo.text
+        })
        },
    },
 }

@@ -8,6 +8,7 @@ import LogIn from './views/authentication/LogIn.vue'
 import SignUp from './views/authentication/SignUp.vue'
 import Blog from './views/Blog.vue'
 import NewPost from './components/blog/NewPost.vue'
+import EditPost from './components/blog/EditPost.vue'
 
 Vue.use(Router)
 
@@ -20,5 +21,6 @@ export const routes = [
     {path: '/login', component: LogIn},
     {path: '/signup', component: SignUp},
     {path: '/blog', component: Blog},
-    {path: '/blog/edit', component: NewPost}
+    {path: '/blog/newpost', component: NewPost},
+    {path: '/blog/editpost', component: EditPost}
   ]

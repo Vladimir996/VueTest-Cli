@@ -89,6 +89,12 @@ import db from '@/firebase/init'
 import firebase from 'firebase';
 import 'firebase/auth';
 export default {
+  data() {
+    return {
+      // logoUrl: '',
+      homePhoto: ''
+};
+  },
   computed: {
     user() {
        return this.$store.getters.getUser !== null && this.$store.getters.getUser !== undefined;
@@ -108,6 +114,7 @@ export default {
       });
       this.$store.commit("setSocialIcons", socialIcons);
     });
+    // this.$store.dispatch('getLogo')
     db.collection("logo")
       .get()
       .then(snapshot => {
@@ -124,7 +131,7 @@ export default {
                this.$store.commit('setUser', null);
                this.$router.push('/login');
            });
-       }
+       },
   }
 };
 </script>

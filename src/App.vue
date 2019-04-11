@@ -12,12 +12,12 @@ import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
 export default {
+  
   components: {
-    'app-header': Header,
-    AppFooter: Footer
-    
-  }
-
+            'app-header': Header,
+            AppFooter: Footer
+     },
+   
 }
 </script> 
 

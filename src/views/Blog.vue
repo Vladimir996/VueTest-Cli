@@ -4,7 +4,7 @@
         <div id="blog-green">
            <p>BLOG</p> 
         </div>
-        <router-link class="btn-post" tag="button"   @click="newPost()"  to="/blog/edit" exact >ADD NEW POST</router-link>
+        <router-link class="btn-post" tag="button" @click="newPost()" to="/blog/newpost" exact >ADD NEW POST</router-link>
        <div v-if="blogInfo">
        <div  v-for="post in blogInfo" :key="post.id" class="z-hovr">
            <button type="button" class="close" aria-label="Close" @click="deletePost(post.id)">
@@ -16,14 +16,15 @@
           <img :src="post.url" class="img-blog">
            <p v-html="post.text"></p>
            </div>
-           <button class="edit-btn">EDIT</button>
+           <router-link class="edit-btn" tag="button"   @click="editPost()"  to="/blog/editpost" exact >EDIT</router-link>
            <div id="line-blog"></div>
         </div>
         </div>
         </div>
         <button id="load-btn">Load more</button>
       </div>
-  </div>
+  </div>   
+  
 </template>
 <script>
 import db from '@/firebase/init'
@@ -67,7 +68,7 @@ export default {
   width: 960px;
   height: 2px;
   background-color: #2ecc71;
-  margin: 30px auto auto auto;
+  margin: 10px auto auto auto;
 }
 .btn-post {
   margin-left: 1240px;

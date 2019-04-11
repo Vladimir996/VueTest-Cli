@@ -15,16 +15,15 @@ const router = new VueRouter({
   mode: 'history',
   routes
 });
-
 new Vue({
   router,
   store,
   render: h => h(App),
-  created() {
-    firebase.auth().onAuthStateChanged((user) => {
-        if(user) {
-            this.$store.dispatch('autoSignIn', user);
-        }
-    });
-}
+//   created() {
+//     firebase.auth().onAuthStateChanged((user) => {
+//         if(user) {
+//             this.$store.dispatch('autoSignIn', user);
+//         }
+//     });
+// }
 }).$mount('#app')

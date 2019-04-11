@@ -45,7 +45,7 @@
 </div> 
 </template>
 <script>
-import db from '../firebase/init'
+import db from '@/firebase/init'
 import ContactForm from "../components/contact/ContactForm.vue";
 export default {
  components: {
