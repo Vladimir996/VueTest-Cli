@@ -1,5 +1,7 @@
 const state = {
-    contactInfo: []
+    contactInfo: [{
+        contactTitle:''
+    }]
 }
 const getters = {
     contactInfo: state => {

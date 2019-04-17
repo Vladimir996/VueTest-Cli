@@ -21,6 +21,6 @@ export const store = new Vuex.Store({
        header,
        footer,
        authentication,
-       blog
+       blog,
    }
 });

@@ -16,7 +16,7 @@
           <img :src="post.url" class="img-blog">
            <p v-html="post.text"></p>
            </div>
-           <router-link class="edit-btn" tag="button"   @click="editPost()"  to="/blog/editpost" exact >EDIT</router-link>
+           <router-link class="edit-btn" tag="button" :to="{ path: 'blog/editpost/' + post.id}"  exact >EDIT</router-link>
            <div id="line-blog"></div>
         </div>
         </div>

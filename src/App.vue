@@ -1,34 +1,50 @@
 <template>
   <div class="app">
     <app-header></app-header>
-    <router-view></router-view>
-    <app-footer></app-footer> 
-    
+    <vue-progress-bar></vue-progress-bar>
+    <router-view/>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import Header from './components/shared/Header'
-import Footer from './components/shared/Footer'
+import Header from "./components/shared/Header";
+import Footer from "./components/shared/Footer";
 
 export default {
-  
   components: {
-            'app-header': Header,
-            AppFooter: Footer
-     },
-   
-}
+    "app-header": Header,
+    AppFooter: Footer
+  },
+  mounted() {
+    this.$Progress.finish();
+  },
+  created() {
+    this.$Progress.start();
+    this.$router.beforeEach((to, from, next) => {
+      if (to.meta.progress !== undefined) {
+        let meta = to.meta.progress;
+        this.$Progress.parseMeta(meta);
+      }
+      this.$Progress.start();
+      next();
+    });
+    this.$router.afterEach((to, from) => {
+      this.$Progress.finish();
+    });
+  }
+};
 </script> 
 
 <style>
-.app{
-    background-color:white;
-    font-family: 'Roboto', sans-serif;
+.app {
+  background-color: white;
+  font-family: "Roboto", sans-serif;
 }
-.container{
-    width: 970px;
-    height: auto;
+.container {
+  width: 970px;
+  height: auto;
+  /* height: 1000px; */
 }
 .header {
   margin: 0 auto;
@@ -91,9 +107,11 @@ export default {
   cursor: pointer;
 }
 .regist li {
-   display: inline;
+  display: inline;
   text-decoration: none;
   font-weight: 500;
 }
-
+/* .progress-bar {
+  height: 20px;;
+} */
 </style>

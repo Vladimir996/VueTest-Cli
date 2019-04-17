@@ -21,11 +21,9 @@ import db from '@/firebase/init'
 export default {
     data(){
        return{
-           title:'',
+           title:null,
            text: null,
-           url:'',
-           src:true,
-
+           url:null,
        }
    },
      mounted(){
@@ -34,8 +32,7 @@ export default {
     methods:{
        addPost() {
            db.collection('blog').add({
-               title: this.title,
-               
+               title: this.title,    
                text: CKEDITOR.instances.ckeditor.getData(),
                url: this.url,
            }).then(() => {

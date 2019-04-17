@@ -22,5 +22,5 @@ export const routes = [
     {path: '/signup', component: SignUp},
     {path: '/blog', component: Blog},
     {path: '/blog/newpost', component: NewPost},
-    {path: '/blog/editpost', component: EditPost}
+    {path: '/blog/editpost/:id', component: EditPost}
   ]

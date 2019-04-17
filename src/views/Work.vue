@@ -5,10 +5,6 @@
         <h3>CHECK OUT WHAT I CAN DO</h3>
       </div>
     </div>
-        <div class="vld-parent">
-        <loading :active.sync="isLoading"></loading>
-        <button @click.prevent="loadAnimation">fetch Data</button>
-    </div>
     <div class="filter">
       <a
         @click.prevent="selectedCategory ='all'"
@@ -47,6 +43,9 @@
       </div>
       <p id="no-result" v-if="projects.length == 0">No result.</p>
     </div>
+    <div>
+      <button id="load-btn">Load more</button>
+    </div>
   </div>
 </template>
 
@@ -59,20 +58,8 @@ export default {
     return {
       activeClass: "grid",
       selectedCategory: "all",
-      isLoading: false
     }
   },
-  components: {
-            Loading,
-  },
-   methods: {
-            loadAnimation() {
-                this.isLoading = true;
-                setTimeout(() => {
-                  this.isLoading = false
-                },1300)
-            },
-     },
   computed: {
     projects() {
       if (this.selectedCategory === "all") {
@@ -81,7 +68,7 @@ export default {
       return this.$store.getters.getProjects.filter(
         project => project.category === this.selectedCategory
       );
-    }
+    },
   },
   created() {
     db.collection('work').get()

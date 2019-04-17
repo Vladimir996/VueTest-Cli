@@ -5,12 +5,10 @@
            <p>EDIT BLOG POST</p> 
         </div>
         <div class="new-post">
-                  <input class="ck-title" v-model='title' type="text" placeholder="Title">
-                       <br>  
-                  <input class="ck-url" v-model='url' type="text" placeholder="URL">
-                  <textarea name="ckeditor" id="ckeditor" v-model='text'></textarea>
-              
-                  <div><button class="btn btn-success" @click="editPost">EDIT</button></div>
+                  <input class="ck-title" v-model='singlePost[0].title' type="text" placeholder="Title">
+                  <input class="ck-url" v-model='singlePost[0].url' type="text" placeholder="URL images">
+                  <textarea name="ckeditor" id="ckeditor" v-model='singlePost[0].text'></textarea>
+                  <div><button class="btn btn-success" @click="editPost()">EDIT</button></div>
         </div>
    </div>
    </div>
@@ -18,28 +16,45 @@
 
 <script>
 import db from '@/firebase/init'
+import { store } from '@/store/store'
 export default {
     data(){
        return{
-        //    moment:moment,
-           title:'',
+           title:null,
            text: null,
-           url:'',
-        //    src:true,
+           url:null,
        }
+   },
+   beforeRouteEnter(to, from, next) {
+       const id = to.params.id;
+       store.dispatch('getSinglePost', id);
+       setTimeout(() => {
+         next();
+       }, 400);
    },
      mounted(){
        CKEDITOR.replace( 'ckeditor' )
    },
-    methods:{
-       editPost() {
-        db.collection('blog').doc(this.blogInfo.id).update({
-            title: this.blogInfo.title,
-            url: this.blogInfo.url,
-            text: this.blogInfo.text
-        })
+   computed:{
+     singlePost(){
+      //  return this.$store.getters.singlePost;
+       return this.$store.getters.['blog/singlePost'];
        },
    },
+   singlePostCreate() {
+    this.$store.dispatch('getSinglePost')
+  },
+  methods: {
+  editPost() {
+    const postText = CKEDITOR.instances.ckeditor.getData();
+    this.$store.dispatch('updatePost', {id: this.$route.params.id, post:{
+      title: this.singlePost[0].title,
+      text: postText,
+      url: this.singlePost[0].url 
+    }})
+    .then(this.$router.push('/blog'))
+  }
+  }
 }
 </script>
 

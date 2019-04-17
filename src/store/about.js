@@ -1,5 +1,7 @@
 const state = {
-    aboutInfo:[],
+    aboutInfo:[{
+        hederText:''
+    }],
        
 }
 const getters = {

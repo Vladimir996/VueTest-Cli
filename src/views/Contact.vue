@@ -63,7 +63,6 @@ export default {
           snapshot.forEach(doc => {
               contactInfo.push(doc.data())
             })
-            console.log(contactInfo)
           this.$store.commit('setContactInfo', contactInfo)
       })
 }

@@ -1,5 +1,7 @@
 const state = {
-    homeInfo: [],
+    homeInfo: [{
+      homePhoto: ''
+    }],
     // homeInfo: {
     //     homePhoto: {
     //        url: 'https://i.imgur.com/pSOsNdQ.png'

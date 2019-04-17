@@ -47,6 +47,7 @@ import db from '@/firebase/init'
 export default {
   components: {
     Carusel
+
   },
   methods: {
     show() {
@@ -54,12 +55,12 @@ export default {
     },
     hide() {
       this.$modal.hide("video-popup");
-    }
+    },
   },
   computed: {
     homeInfo() {
       return this.$store.getters.homeInfo;
-    }
+    },
   },
     created() {
       db.collection('home').get()
@@ -68,11 +69,10 @@ export default {
           snapshot.forEach(doc => {
              homeInfo.push(doc.data())
             })
-            console.log(homeInfo)
           this.$store.commit('sethomeInfo', homeInfo)
-      })
+      });
 }
-};
+}
 </script>
 
 <style>

@@ -1,7 +1,9 @@
 import db from '@/firebase/init'
 
 const state = {
-    headerInfo: [],
+    headerInfo: [{
+        logoUrl: ''
+    }],
     socialIcons: []
         // logoHeader: {
         //     url: 'https://i.imgur.com/JKlZTTJ.png'
