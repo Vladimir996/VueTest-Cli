@@ -3,7 +3,10 @@ import * as firebase from "firebase";
 
 const state = {
     blogInfo: null,
-    singlePost: [],
+    singlePost: [{
+        title:''
+    }
+    ],
     true: true
 }
 const getters = {

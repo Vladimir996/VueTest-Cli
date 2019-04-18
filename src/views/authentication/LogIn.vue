@@ -3,7 +3,6 @@
   <div id="lineIn">
     <p>LOG IN</p> 
   </div>
-
     <div class="singIncontainer">
   <form class="form">
   <div class="form-group">
@@ -19,7 +18,6 @@
   </div>
 </div>
 </template>
-
 <script>
 import db from '@/firebase/init';
 import firebase from 'firebase';
@@ -38,7 +36,6 @@ data() {
                password: this.password
            });
            this.$router.push({ path: '/' });
-
        }
    }
 }

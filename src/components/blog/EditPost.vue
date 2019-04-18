@@ -38,7 +38,7 @@ export default {
    computed:{
      singlePost(){
       //  return this.$store.getters.singlePost;
-       return this.$store.getters.['blog/singlePost'];
+       return this.$store.getters.singlePost;
        },
    },
    singlePostCreate() {

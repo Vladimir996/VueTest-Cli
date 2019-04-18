@@ -9,6 +9,7 @@ import SignUp from './views/authentication/SignUp.vue'
 import Blog from './views/Blog.vue'
 import NewPost from './components/blog/NewPost.vue'
 import EditPost from './components/blog/EditPost.vue'
+import SinglePost from './components/blog/SinglePost.vue'
 
 Vue.use(Router)
 
@@ -22,5 +23,6 @@ export const routes = [
     {path: '/signup', component: SignUp},
     {path: '/blog', component: Blog},
     {path: '/blog/newpost', component: NewPost},
-    {path: '/blog/editpost/:id', component: EditPost}
+    {path: '/blog/editpost/:id', component: EditPost},
+    {path: '/blog/singlepost/:id', component: SinglePost}
   ]

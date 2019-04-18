@@ -151,7 +151,10 @@ export default {
   @media(max-width: 490px) {
   .media-wide {
     display: none;
-  } 
+  }
+   .media-wide img {
+    margin-left: 100px;
+  }  
 }
 .nav-item a {
    color: #737373;

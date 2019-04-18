@@ -16,7 +16,12 @@
           <img :src="post.url" class="img-blog">
            <p v-html="post.text"></p>
            </div>
-           <router-link class="edit-btn" tag="button" :to="{ path: 'blog/editpost/' + post.id}"  exact >EDIT</router-link>
+           <div class="container">
+            <div class="btnn row d-flex justify-content-end">
+              <router-link class="single-btn col-1" tag="button" :to="{ path: 'blog/singlepost/' + post.id}"  exact >SINGLE POST</router-link>
+              <router-link class="edit-btn col-1" tag="button" :to="{ path: 'blog/editpost/' + post.id}"  exact >EDIT</router-link>
+            </div>
+           </div>
            <div id="line-blog"></div>
         </div>
         </div>
@@ -118,11 +123,18 @@ export default {
   border-radius: 7%;
 }
 .edit-btn {
-  margin-left: 1370px;
   background-color: #2ecc71;
   color: white;
   border: none;
   font-weight: 500;
+}
+.single-btn {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  font-weight: 900;
+  font-size: 12px;
+  margin-right: 5px;
 }
 .close {
   margin-right: 490px;
