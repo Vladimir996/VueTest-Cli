@@ -37,7 +37,6 @@ export default {
    },
    computed:{
      singlePost(){
-      //  return this.$store.getters.singlePost;
        return this.$store.getters.singlePost;
        },
    },
@@ -61,19 +60,6 @@ export default {
 <style>
 .container-blog {
     height: auto;
-}
-#blog-green {
- width: 100%;
-  height: 93px;
-  background-color: #2ecc71;
-  margin-bottom: 40px;
-}
-#blog-green p {
-    font-size: 37px;
-  font-weight: 500;
-  color: white;
-  margin-left: 480px;
-  padding-top: 20px;
 }
 #cke_ckeditor {
  width: 1000px;

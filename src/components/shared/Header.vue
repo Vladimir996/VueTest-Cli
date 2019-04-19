@@ -65,6 +65,9 @@
       <li class="nav-item">
        <router-link to="/blog" exact>BLOG</router-link>
       </li>
+       <li class="nav-item" id="profile">
+       <router-link to="/profile" exact>PROFILE</router-link>
+      </li>
     </ul>
     </div>
     <div>
@@ -114,7 +117,6 @@ export default {
       });
       this.$store.commit("setSocialIcons", socialIcons);
     });
-    // this.$store.dispatch('getLogo')
     db.collection("logo")
       .get()
       .then(snapshot => {
@@ -168,5 +170,9 @@ export default {
 }
 .logout {
   float: right;
+  margin-top: 5px;
+}
+#profile {
+  margin-left: 335px;
 }
 </style>

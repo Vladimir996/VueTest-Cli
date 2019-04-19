@@ -44,7 +44,6 @@ export default {
 .container {
   width: 970px;
   height: auto;
-  /* height: 1000px; */
 }
 .header {
   margin: 0 auto;
@@ -92,7 +91,6 @@ export default {
   text-decoration: none;
 }
 .navbar-toggler {
-  /* margin: 0 auto; */
   margin-left: 160px;
 }
 #singin {
@@ -111,7 +109,23 @@ export default {
   text-decoration: none;
   font-weight: 500;
 }
-/* .progress-bar {
-  height: 20px;;
-} */
+#blog-green {
+ width: 100%;
+  height: 93px;
+  background-color: #2ecc71;
+  margin-bottom: 40px;
+}
+#blog-green p {
+    font-size: 37px;
+  font-weight: 500;
+  color: white;
+  margin-left: 480px;
+  padding-top: 20px;
+}
+#line-blog {
+  width: 960px;
+  height: 2px;
+  background-color: #2ecc71;
+  margin: 10px auto auto auto;
+}
 </style>

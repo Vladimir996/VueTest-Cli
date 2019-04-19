@@ -53,19 +53,6 @@ export default {
 .container-blog {
     height: auto;
 }
-#blog-green {
- width: 100%;
-  height: 93px;
-  background-color: #2ecc71;
-  margin-bottom: 40px;
-}
-#blog-green p {
-    font-size: 37px;
-  font-weight: 500;
-  color: white;
-  margin-left: 480px;
-  padding-top: 20px;
-}
 .title-post {
     margin-left: 480px;
     margin-bottom: 20px;

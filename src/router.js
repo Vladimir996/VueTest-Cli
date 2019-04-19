@@ -10,6 +10,8 @@ import Blog from './views/Blog.vue'
 import NewPost from './components/blog/NewPost.vue'
 import EditPost from './components/blog/EditPost.vue'
 import SinglePost from './components/blog/SinglePost.vue'
+import Profile from './views/Profile.vue'
+import ProfileData from './components/blog/ProfileData'
 
 Vue.use(Router)
 
@@ -24,5 +26,8 @@ export const routes = [
     {path: '/blog', component: Blog},
     {path: '/blog/newpost', component: NewPost},
     {path: '/blog/editpost/:id', component: EditPost},
-    {path: '/blog/singlepost/:id', component: SinglePost}
+    {path: '/blog/singlepost/:id', component: SinglePost},
+    {path: '/profile', component: Profile},
+    {path: '/profiledata', component: ProfileData}
+
   ]

@@ -2,15 +2,17 @@
    <div>
        <div class="container-blog">
         <div id="blog-green">
-           <p>ADD NEW BLOG POST</p> 
+           <p>PROFILE DATA</p> 
         </div>
         <div class="new-post">
-                  <input class="ck-title" v-model='title' type="text" placeholder="Title">
-                       <br>  
-                  <input class="ck-url" v-model='url' type="text" placeholder="URL">
+                  <p>First name:</p>
+                  <input class="first-name" v-model='title' type="text" placeholder="Firste name">
+                  <br>
+                  <p>Profil photo:</p>
+                  <input class="img-profile" v-model='url' type="text" placeholder="Profil photo(URL)">
+                  <p>Biography:</p>
                   <textarea class="tSextarea" name="ckeditor" id="ckeditor" v-model='text'></textarea>
-              
-                  <div><button class="btn btn-success" @click="addPost">ADD POST</button></div>
+                  <div><button class="btn btn-success" @click="savePost">SAVE</button></div> 
         </div>
    </div>
    </div>
@@ -30,13 +32,13 @@ export default {
        CKEDITOR.replace( 'ckeditor' )
    },
     methods:{
-       addPost() {
-           db.collection('blog').add({
+       savePost() {
+           db.collection('user').add({
                title: this.title,    
                text: CKEDITOR.instances.ckeditor.getData(),
                url: this.url,
            }).then(() => {
-                  this.$router.push({ path: '/blog' }) 
+                  this.$router.push({ path: '/profile' }) 
                })
        },
    },
@@ -56,16 +58,21 @@ export default {
     margin-top: 30px;
     margin-bottom: 20px;
 }
-.ck-title {
+.first-name {
     margin-left: 450px;
     margin-bottom: 20px;
-    width: 600px;
+    width: 400px;
     height: 40px;
 }
-.ck-url {
+.img-profile {
     margin-left: 450px;
     margin-bottom: 20px;
-    width: 600px;
+    width: 400px;
     height: 40px;
+}
+.new-post p {
+    margin-left: 450px;
+
+    margin-bottom: -3px;
 }
 </style>
