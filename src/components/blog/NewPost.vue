@@ -5,9 +5,11 @@
            <p>ADD NEW BLOG POST</p> 
         </div>
         <div class="new-post">
+                 <p>Title</p>
                   <input class="ck-title" v-model='title' type="text" placeholder="Title">
-                       <br>  
+                 <p>Photo URL</p>  
                   <input class="ck-url" v-model='url' type="text" placeholder="URL">
+                  <p>Text</p>
                   <textarea class="tSextarea" name="ckeditor" id="ckeditor" v-model='text'></textarea>
               
                   <div><button class="btn btn-success" @click="addPost">ADD POST</button></div>
@@ -67,5 +69,9 @@ export default {
     margin-bottom: 20px;
     width: 600px;
     height: 40px;
+}
+.new-post p {
+    margin-left: 450px;
+    margin-bottom: -3px;
 }
 </style>

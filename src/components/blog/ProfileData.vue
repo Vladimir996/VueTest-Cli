@@ -6,12 +6,12 @@
         </div>
         <div class="new-post">
                   <p>First name:</p>
-                  <input class="first-name" v-model='title' type="text" placeholder="Firste name">
+                  <input class="first-name" v-model='name' type="text" placeholder="Firste name">
                   <br>
                   <p>Profil photo:</p>
-                  <input class="img-profile" v-model='url' type="text" placeholder="Profil photo(URL)">
+                  <input class="img-profile" v-model='imgUrl' type="text" placeholder="Profil photo(URL)">
                   <p>Biography:</p>
-                  <textarea class="tSextarea" name="ckeditor" id="ckeditor" v-model='text'></textarea>
+                  <textarea class="biography" v-model='biography'></textarea>
                   <div><button class="btn btn-success" @click="savePost">SAVE</button></div> 
         </div>
    </div>
@@ -23,20 +23,24 @@ import db from '@/firebase/init'
 export default {
     data(){
        return{
-           title:null,
-           text: null,
-           url:null,
+           name:null,
+           biography: null,
+           imgUrl:null,
        }
    },
-     mounted(){
-       CKEDITOR.replace( 'ckeditor' )
-   },
+//    beforeRouteEnter(to, from, next) {
+//        const id = to.params.id;
+//        store.dispatch('getUserPost', id);
+//        setTimeout(() => {
+//          next();
+//        }, 400);
+//    },
     methods:{
        savePost() {
            db.collection('user').add({
-               title: this.title,    
-               text: CKEDITOR.instances.ckeditor.getData(),
-               url: this.url,
+               name: this.name,    
+               biography: this.biography,
+               imgUrl: this.imgUrl,
            }).then(() => {
                   this.$router.push({ path: '/profile' }) 
                })
@@ -45,7 +49,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container-blog {
     height: auto;
 }
@@ -72,7 +76,11 @@ export default {
 }
 .new-post p {
     margin-left: 450px;
-
     margin-bottom: -3px;
+}
+.biography {
+    margin-left: 450px;
+    width: 500px;
+    height: 200px;
 }
 </style>

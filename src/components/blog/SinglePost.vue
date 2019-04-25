@@ -4,12 +4,12 @@
         <div id="blog-green">
            <p>POST</p> 
         </div>
-        <div class="new-post">
-             <div><button class="btn btn-success" @click="backPost()">BACK</button></div> 
+        <div class="new-postt">
+             <div><button class="btn btn-success btn-back" @click="backPost()">BACK</button></div> 
                   <h3  class="title-post" >{{ singlePost[0].title }}</h3>
                     <div id="line-blog"></div>
-                <img class="url-post" :src="singlePost[0].url">
-                <p class="text-post" v-html="singlePost[0].text"></p>
+                <img class="urll-post" :src="singlePost[0].url">
+                <p class="textt-post" v-html="singlePost[0].text"></p>
         </div>
    </div>
    </div>
@@ -59,18 +59,23 @@ export default {
     width: 850px;
     margin-top: -60px;
 }
-.url-post {
+.urll-post {
     margin-left: 480px;
     margin-bottom: 20px;
     margin-top: 15px;
     width: 500px;
     height: 250px;
 }
-.text-post {
-    margin-left: 480px;
+.textt-post {
+    margin-left: 470px;
     width: 900px;
+    margin-bottom: -3px;
 }
-.btn-success{
+.new-post button {
     margin-left: 1360px;
+}
+.new-postt {
+    margin-left: 10px;
+    margin-bottom: -6px;
 }
 </style>

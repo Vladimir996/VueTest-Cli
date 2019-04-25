@@ -5,18 +5,21 @@
            <p>EDIT BLOG POST</p> 
         </div>
         <div class="new-post">
+                  <p>Title</p>
                   <input class="ck-title" v-model='singlePost[0].title' type="text" placeholder="Title">
+                  <p>Photo URL</p> 
                   <input class="ck-url" v-model='singlePost[0].url' type="text" placeholder="URL images">
+                  <p>Text</p>
                   <textarea name="ckeditor" id="ckeditor" v-model='singlePost[0].text'></textarea>
-                  <div><button class="btn btn-success" @click="editPost()">EDIT</button></div>
+                  <div><button class="btn btn-success" @click="editPost()">SAVE</button></div>
         </div>
    </div>
    </div>
 </template>
 
 <script>
-import db from '@/firebase/init'
-import { store } from '@/store/store'
+import db from '@/firebase/init';
+import { store } from '@/store/store';
 export default {
     data(){
        return{
@@ -57,7 +60,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container-blog {
     height: auto;
 }
@@ -81,5 +84,9 @@ export default {
     margin-bottom: 20px;
     width: 600px;
     height: 40px;
+}
+.new-post p {
+  margin-left: 450px;
+  margin-bottom: -3px;
 }
 </style>

@@ -4,21 +4,21 @@
         <div id="blog-green">
            <p>BLOG</p> 
         </div>
-        <router-link class="btn-post" tag="button" @click="newPost()" to="/blog/newpost" exact >ADD NEW POST</router-link>
+        <router-link class="btn-post" tag="button" @click="newPost()" to="/blog/newpost" exact>ADD NEW POST</router-link>
        <div v-if="blogInfo">
        <div  v-for="post in blogInfo" :key="post.id" class="z-hovr">
-           <button type="button" class="close" aria-label="Close" @click="deletePost(post.id)">
-          <span aria-hidden="true">&times;</span>
+           <button type="button" class="close" aria-label="Close" data-toggle="modal" data-target="#deleteBlog" @click="deletePost(post.id, post.title)">
+          <span aria-hidden="true">&times;</span> 
          </button>
         <div class="post-list">
-          <h3>{{ post.title }}</h3>
+           <router-link class="title-btn" :to="{ path: 'blog/singlepost/' + post.id}"> <h3>{{ post.title }}</h3> </router-link>
           <div class="post-blog">
           <img :src="post.url" class="img-blog">
            <p v-html="post.text"></p>
            </div>
            <div class="container">
             <div class="btnn row d-flex justify-content-end">
-              <router-link class="single-btn col-1" tag="button" :to="{ path: 'blog/singlepost/' + post.id}"  exact >SINGLE POST</router-link>
+              <!-- <router-link class="single-btn col-1" tag="button" :to="{ path: 'blog/singlepost/' + post.id}"  exact >SINGLE POST</router-link> -->
               <router-link class="edit-btn col-1" tag="button" :to="{ path: 'blog/editpost/' + post.id}"  exact >EDIT</router-link>
             </div>
            </div>
@@ -27,6 +27,7 @@
         </div>
         </div>
         <button id="load-btn">Load more</button>
+        <Prompt :title="blogTitle" :id="id" > </Prompt>
       </div>
   </div>   
   
@@ -34,7 +35,17 @@
 <script>
 import db from '@/firebase/init'
 import { setTimeout } from 'timers';
+import Prompt from "../components/shared/Prompt.vue";
 export default {
+  data() {
+    return{
+       blogTitle: '',
+       id: ''
+    }
+  },
+  components: {
+    Prompt
+  },
    computed:{
      blogInfo(){
        return this.$store.getters.blogInfo;
@@ -44,9 +55,12 @@ export default {
     this.$store.dispatch('getBlogs')
   },
   methods: {
-     deletePost(id) {
-       db.collection("blog").doc(id).delete();
-         this.$store.dispatch('getBlogs')
+     deletePost(id, title) {
+      //  db.collection("blog").doc(id).delete();
+      //    this.$store.dispatch('getBlogs')
+      this.id = id;
+      this.blogTitle = title;
+      // console.log(id, title)
        },
   }
 }
@@ -83,8 +97,12 @@ export default {
   width: 565px;
   height: 250px;
   margin-top: 15px;
-  overflow-y: scroll; 
-  overflow-x: hidden;
+  /* overflow-y: scroll; 
+  overflow-x: hidden; */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .post-blog {
   display: inline;
@@ -123,5 +141,13 @@ export default {
 }
 .close:hover {
   color: red;
+}
+.title-btn {
+  text-decoration: none;
+  color: black;
+}
+.title-btn:hover {
+    text-decoration: none;
+    color: #2ecc71;
 }
 </style>

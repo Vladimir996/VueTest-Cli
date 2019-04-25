@@ -66,7 +66,8 @@
        <router-link to="/blog" exact>BLOG</router-link>
       </li>
        <li class="nav-item" id="profile">
-       <router-link to="/profile" exact>PROFILE</router-link>
+       <router-link to="/profile" exact>{{ userInfo[0].name }}</router-link>
+       <!-- <a v-if="user" :class="{ logout: user }"  to="/profile"> {{ userInfo[0].name }} </a> -->
       </li>
     </ul>
     </div>
@@ -78,8 +79,10 @@
       <li v-if="!user" class="nav-item" id="singup">
        <router-link to="/signup" exact>SIGN UP</router-link>
       </li>
+      <img class="user-photo" :src="userInfo[0].imgUrl" @click="userProfile">
+       <!-- <a v-if="user" @click="logout" :class="{ logout: user }" >LOGOUT</a> -->
       <li class="nav-item">
-        <a v-if="user" @click="logout" :class="{ logout: user }" >LOG OUT</a>
+        <a v-if="user" @click="logout" :class="{ logout: user }" >LOGOUT</a>
       </li>
     </ul>
     </div>
@@ -94,7 +97,6 @@ import 'firebase/auth';
 export default {
   data() {
     return {
-      // logoUrl: '',
       homePhoto: ''
 };
   },
@@ -107,7 +109,9 @@ export default {
     },
     socialIcons() {
       return this.$store.getters.socialIcons;
-    }
+    },  userInfo(){
+         return this.$store.getters.userInfo;
+       },
   },
   created() {
     db.collection("social-links").onSnapshot(snapshot => {
@@ -126,6 +130,14 @@ export default {
         });
         this.$store.commit("setHeaderInfo", headerInfo);
       });
+       db.collection('user').get()
+      .then(snapshot => {
+        const userInfo = []
+          snapshot.forEach(doc => {
+              userInfo.push(doc.data())
+            })
+          this.$store.commit('setUserInfo', userInfo)
+      });
   },
   methods: {
     logout(){
@@ -133,7 +145,11 @@ export default {
                this.$store.commit('setUser', null);
                this.$router.push('/login');
            });
+           
        },
+       userProfile() {
+         this.$router.push('/profile')
+        }
   }
 };
 </script>
@@ -169,10 +185,19 @@ export default {
  color: #2ecc71 !important;
 }
 .logout {
-  float: right;
   margin-top: 5px;
 }
 #profile {
-  margin-left: 335px;
+  margin-left: 370px;
+  margin-top: -20px;
+}
+.user-photo {
+  width:50px;
+  height: 50px;
+  margin-left: -210px;
+  margin-right: 320px;
+  /* border-radius: 10px 100px / 120px; */
+  border-radius: 100%;
+  cursor: pointer;
 }
 </style>
