@@ -16,6 +16,9 @@
           <img :src="post.url" class="img-blog">
            <p v-html="post.text"></p>
            </div>
+            <div class="formatDate">
+           <p>{{ formatDate(post.date) }}</p>
+           </div>
            <div class="container">
             <div class="btnn row d-flex justify-content-end">
               <!-- <router-link class="single-btn col-1" tag="button" :to="{ path: 'blog/singlepost/' + post.id}"  exact >SINGLE POST</router-link> -->
@@ -36,6 +39,7 @@
 import db from '@/firebase/init'
 import { setTimeout } from 'timers';
 import Prompt from "../components/shared/Prompt.vue";
+import moment from 'moment';
 export default {
   data() {
     return{
@@ -62,6 +66,9 @@ export default {
       this.blogTitle = title;
       // console.log(id, title)
        },
+       formatDate(date) {
+         return moment(date).format('DD/MM/YYYY');
+       }
   }
 }
 </script>
@@ -149,5 +156,11 @@ export default {
 .title-btn:hover {
     text-decoration: none;
     color: #2ecc71;
+}
+.formatDate p{
+  height: 18px;
+  margin-left: 475px;
+  margin-top: -7px;
+  margin-bottom: -20px;
 }
 </style>

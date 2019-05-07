@@ -55,7 +55,8 @@ const actions = {
     .doc(payload.id).set({
         title: payload.post.title,
         text: payload.post.text,
-        url: payload.post.url
+        url: payload.post.url,
+        date: payload.post.date,
      })
      .then(function() {
          dispatch('getBlogs')

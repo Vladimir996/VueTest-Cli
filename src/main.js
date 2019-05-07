@@ -7,6 +7,7 @@ import Vuelidate from 'vuelidate'
 import { store } from './store/store'
 import VueProgressBar from 'vue-progressbar'
 import firebase from 'firebase'
+import moment from 'moment'
 const options = {
   color: '#2ecc71',
   failedColor: '#874b4b',
@@ -26,6 +27,11 @@ Vue.use(VueRouter);
 Vue.use(VModal);
 Vue.use(Vuelidate);
 Vue.use(VueProgressBar, options);
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('MM/DD/YYYY hh:mm')
+  }
+});
 
 const router = new VueRouter({
   mode: 'history',

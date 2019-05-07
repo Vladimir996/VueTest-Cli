@@ -9,6 +9,9 @@
                   <input class="ck-title" v-model='title' type="text" placeholder="Title">
                  <p>Photo URL</p>  
                   <input class="ck-url" v-model='url' type="text" placeholder="URL">
+                  <p>Date</p>
+                   <datepicker v-model="date" name="uniquename" class="date-picker"></datepicker>
+                    <p>{{ date | formatDate}}</p>
                   <p>Text</p>
                   <textarea class="tSextarea" name="ckeditor" id="ckeditor" v-model='text'></textarea>
               
@@ -19,13 +22,19 @@
 </template>
 
 <script>
-import db from '@/firebase/init'
+import db from '@/firebase/init';
+import Datepicker from 'vuejs-datepicker';
+import moment from 'moment';
 export default {
+     components: {
+    Datepicker
+  },
     data(){
        return{
            title:null,
            text: null,
            url:null,
+           date: '',
        }
    },
      mounted(){
@@ -37,6 +46,7 @@ export default {
                title: this.title,    
                text: CKEDITOR.instances.ckeditor.getData(),
                url: this.url,
+               date:moment(this.date).utc().startOf('day').format(),
            }).then(() => {
                   this.$router.push({ path: '/blog' }) 
                })
@@ -73,5 +83,8 @@ export default {
 .new-post p {
     margin-left: 450px;
     margin-bottom: -3px;
+}
+.date-picker {
+    margin-left: 450px;
 }
 </style>
