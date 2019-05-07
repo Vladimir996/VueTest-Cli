@@ -1,9 +1,9 @@
 <template>
    <div>
-       <div class="container-blog">
-        <div id="blog-green">
+       <div id="blog-green">
            <p>PROFILE</p> 
         </div>
+       <div class="container-profile">
         <div class="new-postt">
              <div><button class="btn btn-successs" @click="editProfile()">EDIT PROFILE</button></div> 
                  <h3  class="title-post" >{{ userInfo[0].name }}</h3>
@@ -50,11 +50,13 @@ editProfile() {
 </script>
 
 <style>
-.container-blog {
-    height: auto;
+.container-profile {
+     width: 970px;
+  margin-left: 480px;
+  height: auto;
 }
 .title-post {
-    margin-left: 480px;
+    /* margin-left: 480px; */
     width: 850px;
     margin-top: -60px;
 }
@@ -71,11 +73,10 @@ editProfile() {
     width: 750px;
     text-align: left !important;
 }
-.btn-success{
-    margin-left: 1360px;
-}
 .btn-successs{
-    margin-left: 1300px;
+    margin-left: 830px;
+    margin-top: -20px;
+    margin-bottom: 20px;
     background-color: #28a745;
     color: white;
 }

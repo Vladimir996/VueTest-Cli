@@ -7,7 +7,8 @@ const state = {
         title:''
     }
     ],
-    true: true
+    true: true,
+    sort: 'asc'
 }
 const getters = {
     blogInfo: state => {
@@ -26,11 +27,18 @@ const mutations = {
     },
     setTrue(state, payload){
         state.true = payload
+    },
+    setSort(state, payload){
+        if(state.sort === 'asc'){
+            return state.sort = 'desc'
+        }else {
+            return state.sort = 'asc'
+        }
     }
 }
 const actions = {
-    getBlogs({ commit }) {
-        db.collection('blog').get()
+    getBlogs({ commit, state }) {
+        db.collection('blog').orderBy('date', state.sort).get()
     .then(snapshot => {
         var blogInfo = []
       snapshot.forEach(doc => {

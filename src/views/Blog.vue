@@ -1,84 +1,111 @@
 <template>
   <div>
-      <div class="container-blog">
-        <div id="blog-green">
-           <p>BLOG</p> 
-        </div>
-        <router-link class="btn-post" tag="button" @click="newPost()" to="/blog/newpost" exact>ADD NEW POST</router-link>
-       <div v-if="blogInfo">
-       <div  v-for="post in blogInfo" :key="post.id" class="z-hovr">
-           <button type="button" class="close" aria-label="Close" data-toggle="modal" data-target="#deleteBlog" @click="deletePost(post.id, post.title)">
-          <span aria-hidden="true">&times;</span> 
-         </button>
-        <div class="post-list">
-           <router-link class="title-btn" :to="{ path: 'blog/singlepost/' + post.id}"> <h3>{{ post.title }}</h3> </router-link>
-          <div class="post-blog">
-          <img :src="post.url" class="img-blog">
-           <p v-html="post.text"></p>
-           </div>
-            <div class="formatDate">
-           <p>{{ formatDate(post.date) }}</p>
-           </div>
-           <div class="container">
-            <div class="btnn row d-flex justify-content-end">
-              <!-- <router-link class="single-btn col-1" tag="button" :to="{ path: 'blog/singlepost/' + post.id}"  exact >SINGLE POST</router-link> -->
-              <router-link class="edit-btn col-1" tag="button" :to="{ path: 'blog/editpost/' + post.id}"  exact >EDIT</router-link>
-            </div>
-           </div>
-           <div id="line-blog"></div>
-        </div>
-        </div>
-        </div>
-        <button id="load-btn">Load more</button>
-        <Prompt :title="blogTitle" :id="id" > </Prompt>
+    <div id="blog-green">
+        <p>BLOG</p>
       </div>
-  </div>   
-  
+    <div class="container-blog">
+      <router-link
+        class="btn-post"
+        tag="button"
+        @click="newPost()"
+        to="/blog/newpost"
+        exact
+      >ADD NEW POST</router-link>
+      <div v-if="blogInfo">
+        <button @click="sort"><img class="sort-btn" src="https://img.icons8.com/color/48/000000/sorting-arrows.png"></button>
+        <div v-for="post in blogInfo" :key="post.id" class="z-hovr">
+          <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            data-toggle="modal"
+            data-target="#deleteBlog"
+            @click="deletePost(post.id, post.title)"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="post-list">
+            <router-link class="title-btn" :to="{ path: 'blog/singlepost/' + post.id}">
+              <h3>{{ post.title }}</h3>
+            </router-link>
+            <div class="post-blog">
+              <router-link class="img-blog" :to="{ path: 'blog/singlepost/' + post.id}">
+             <img :src="post.url" class="img-blog" :to="{ path: 'blog/singlepost/' + post.id}">
+            </router-link>
+              <p v-html="post.text.substring(0,120)+'...'"></p>
+              <!-- <p> {{ post.text | truncate(100) }} </p> -->
+            </div>
+            <div class="formatDate">
+              <p>{{ formatDate(post.date) }}</p>
+            </div>
+            <div class="container">
+              <div class="btnn row d-flex justify-content-end">
+                <!-- <router-link class="single-btn col-1" tag="button" :to="{ path: 'blog/singlepost/' + post.id}"  exact >SINGLE POST</router-link> -->
+                <router-link
+                  class="edit-btn col-1"
+                  tag="button"
+                  :to="{ path: 'blog/editpost/' + post.id}"
+                  exact
+                >EDIT</router-link>
+              </div>
+            </div>
+            <div id="line-blog"></div>
+          </div>
+        </div>
+      </div>
+      <button id="load-btn">Load more</button>
+      <Prompt :title="blogTitle" :id="id"></Prompt>
+    </div>
+  </div>
 </template>
 <script>
-import db from '@/firebase/init'
-import { setTimeout } from 'timers';
+import db from "@/firebase/init";
+import { setTimeout } from "timers";
 import Prompt from "../components/shared/Prompt.vue";
-import moment from 'moment';
+import moment from "moment";
 export default {
   data() {
-    return{
-       blogTitle: '',
-       id: ''
-    }
+    return {
+      blogTitle: "",
+      id: "",
+    };
   },
   components: {
     Prompt
   },
-   computed:{
-     blogInfo(){
-       return this.$store.getters.blogInfo;
-       },
-   },
+  computed: {
+    blogInfo() {
+      return this.$store.getters.blogInfo;
+    }
+  },
   beforeCreate() {
-    this.$store.dispatch('getBlogs')
+    this.$store.dispatch("getBlogs");
   },
   methods: {
-     deletePost(id, title) {
-      //  db.collection("blog").doc(id).delete();
-      //    this.$store.dispatch('getBlogs')
+    deletePost(id, title) {
       this.id = id;
       this.blogTitle = title;
-      // console.log(id, title)
-       },
-       formatDate(date) {
-         return moment(date).format('DD/MM/YYYY');
-       }
+    },
+    formatDate(date) {
+      return moment(date).format("DD/MM/YYYY");
+    },
+    sort(){
+      this.$store.commit('setSort')
+      this.$store.dispatch('getBlogs')
+
+    }
   }
 }
 </script>
 
 <style>
 .container-blog {
-    height: auto;
+   width: 970px;
+  margin-left: 480px;
+  height: auto;
 }
 .btn-post {
-  margin-left: 1240px;
+  margin-left: 780px;
   width: 180px;
   height: 40px;
   background-color: #2ecc71;
@@ -90,14 +117,12 @@ export default {
 .img-blog {
   width: 350px;
   height: 250px;
-  margin-left: 480px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .post-list h3 {
-  margin-left: 480px;
   font-size: 26px;
   margin-top: 10px;
-  width: 1000px;
+  width: 950px;
 }
 .post-list p {
   margin-left: 15px;
@@ -106,17 +131,17 @@ export default {
   margin-top: 15px;
   /* overflow-y: scroll; 
   overflow-x: hidden; */
-  overflow: hidden;
+  /* overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: vertical; */
 }
 .post-blog {
   display: inline;
-  display: flex;  
+  display: flex;
 }
 #load-btn {
-  margin-left: 850px;
+  margin-left: 400px;
   width: 180px;
   height: 45px;
   background-color: #2ecc71;
@@ -144,7 +169,7 @@ export default {
   margin-right: 5px;
 }
 .close {
-  margin-right: 490px;
+  margin-right: 10px;
 }
 .close:hover {
   color: red;
@@ -154,13 +179,22 @@ export default {
   color: black;
 }
 .title-btn:hover {
-    text-decoration: none;
-    color: #2ecc71;
+  text-decoration: none;
+  color: #2ecc71;
 }
-.formatDate p{
+.formatDate p {
   height: 18px;
-  margin-left: 475px;
+  margin-left: -5px;
   margin-top: -7px;
   margin-bottom: -20px;
+}
+.sort-btn {
+  width: 20px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+.sort-btn button {
+   color: red;
 }
 </style>
