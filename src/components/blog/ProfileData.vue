@@ -1,13 +1,13 @@
 <template>
    <div>
-       <div class="container-blog">
         <div id="blog-green">
            <p>PROFILE DATA</p> 
         </div>
+       <div class="container-data">
         <div class="new-post">
-                  <p>First name:</p>
+                  <!-- <p>First name:</p>
                   <input class="first-name" v-model='name' type="text" placeholder="Firste name">
-                  <br>
+                  <br> -->
                   <p>Profil photo:</p>
                   <input class="img-profile" v-model='imgUrl' type="text" placeholder="Profil photo(URL)">
                   <p>Biography:</p>
@@ -23,7 +23,7 @@ import db from '@/firebase/init'
 export default {
     data(){
        return{
-           name:null,
+        //    name:null,
            biography: null,
            imgUrl:null,
        }
@@ -38,7 +38,7 @@ export default {
     methods:{
        savePost() {
            db.collection('user').add({
-               name: this.name,    
+            //    name: this.name,    
                biography: this.biography,
                imgUrl: this.imgUrl,
            }).then(() => {
@@ -50,36 +50,31 @@ export default {
 </script>
 
 <style scoped>
-.container-blog {
+.container-data{
     height: auto;
+    margin-left: 480px;
 }
 #cke_ckeditor {
  width: 1000px;
- margin-left: 450px;
 }
 .btn-success {
-    margin-left: 450px;
     margin-top: 30px;
     margin-bottom: 20px;
 }
 .first-name {
-    margin-left: 450px;
     margin-bottom: 20px;
     width: 400px;
     height: 40px;
 }
 .img-profile {
-    margin-left: 450px;
     margin-bottom: 20px;
     width: 400px;
     height: 40px;
 }
 .new-post p {
-    margin-left: 450px;
     margin-bottom: -3px;
 }
 .biography {
-    margin-left: 450px;
     width: 500px;
     height: 200px;
 }

@@ -63,7 +63,7 @@ export default {
   singlePostCreate() {
     this.$store.dispatch("getSinglePost");
   },
-  methods: {
+  methods: { 
     editPost() {
       const postText = CKEDITOR.instances.ckeditor.getData();
       this.$store

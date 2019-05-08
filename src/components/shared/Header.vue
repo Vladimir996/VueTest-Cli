@@ -66,7 +66,7 @@
        <router-link to="/blog" exact>BLOG</router-link>
       </li>
        <li class="nav-item" id="profile">
-       <router-link to="/profile" exact>{{ userInfo[0].name }}</router-link>
+       <router-link v-if="user" to="/profile" exact>{{ userInfo[0].name }}</router-link>
        <!-- <a v-if="user" :class="{ logout: user }"  to="/profile"> {{ userInfo[0].name }} </a> -->
       </li>
     </ul>
@@ -79,7 +79,7 @@
       <li v-if="!user" class="nav-item" id="singup">
        <router-link to="/signup" exact>SIGN UP</router-link>
       </li>
-      <img class="user-photo" :src="userInfo[0].imgUrl" @click="userProfile">
+      <img v-if="user" class="user-photo" :src="userInfo[0].imgUrl" @click="userProfile">
        <!-- <a v-if="user" @click="logout" :class="{ logout: user }" >LOGOUT</a> -->
       <li class="nav-item">
         <a v-if="user" @click="logout" :class="{ logout: user }" >LOGOUT</a>

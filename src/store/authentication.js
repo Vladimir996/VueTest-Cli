@@ -1,7 +1,9 @@
 import firebase from 'firebase';
 import 'firebase/auth';
 const state = {
-    user: null, 
+    user: null,
+    username: null,
+
 }
 const getters = {
     getUser: state => {
@@ -17,11 +19,19 @@ const actions = {
     createUser( {commit}, {email, password} ) {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(user => {
         const newUser = {
-        id: user.uid
-        };
+        id: user.uid,
+        // username:'',
+        }
+        // db.collection('user')
+        // .where('id', '==', newUser.id)
+        // db.collection("users").doc().set({
+        //     email: payload.email,
+        //     username: payload.username,
+        // }).then(() => {
         commit('setUser', newUser);
-        });
-        },
+        })
+        // });
+    },
         logIn( {commit}, {email, password} ) {
             firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
             const newUser = {

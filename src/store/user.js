@@ -1,5 +1,5 @@
 import db from '../firebase/init'
-// import * as firebase from "firebase";
+import * as firebase from "firebase";
 
 const state = {
     userInfo: [{
@@ -8,16 +8,24 @@ const state = {
         biography:''
     }
     ],
+    userName: [{
+        name:''
+    }]
 }
 const getters = {
-
     userInfo: state => {
         return state.userInfo;
+    },
+    userName: state => {
+        return state.userName;
     }
 }
 const mutations = {
     setUserInfo(state, payload) {
         state.userInfo = payload
+    },
+    setUserName(state, payload) {
+        state.userName = payload
     }
 }
 const actions = {
@@ -32,6 +40,13 @@ const actions = {
     //      commit('setUserInfo', userInfo)
     //   })
     // },
+    // updatePost({ commit },payload) {
+    //     db.collection('user')
+    //     .doc(payload.id).set({
+    //         biography: payload.biography,
+    //         imgUrl: payload.imgUrl,
+    //      })
+    // }
 }
 export default {
     state,
